@@ -7,10 +7,7 @@ import java.util.ArrayList;
 import java.util.List;
 
 public class Repetition {
-    public ChronoUnit getFrequency() {
-        return myFrequency;
-    }
-
+    
     /**
      * Stores the frequency of this repetition, one of :
      * <UL>
@@ -20,9 +17,25 @@ public class Repetition {
      * </UL>
      */
     private final ChronoUnit myFrequency;
+    
+    private List<LocalDate> exceptions;
+    private Termination termination;
 
     public Repetition(ChronoUnit myFrequency) {
         this.myFrequency = myFrequency;
+        this.exceptions = new ArrayList<>();
+    }
+
+    public ChronoUnit getFrequency() {
+        return myFrequency;
+    }
+    
+    public Termination getTermination() {
+        return termination;
+    }
+    
+    public List<LocalDate> getExceptions() {
+        return exceptions;
     }
 
     /**
@@ -30,8 +43,7 @@ public class Repetition {
      * @param date un date à laquelle l'événement ne doit pas se répéter
      */
     public void addException(LocalDate date) {
-        // TODO : implémenter cette méthode
-        throw new UnsupportedOperationException("Pas encore implémenté");
+        exceptions.add(date);
     }
 
     /**
@@ -39,8 +51,6 @@ public class Repetition {
      * @param termination la terminaison de la répétition
      */
     public void setTermination(Termination termination) {
-        // TODO : implémenter cette méthode
-        throw new UnsupportedOperationException("Pas encore implémenté");
-
+        this.termination = termination;
     }
 }

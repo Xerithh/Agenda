@@ -1,2 +1,41 @@
-Ecrire ici votre réponse à la question UML.
+1. Approche par Composition : Event + Repetition + Termination
 
+Cette première solution et cet UML repose sur :
+
+la classe Event qui décrit l’événement en lui-même,
+la classe Repetition qui définit la règle de récurrence,
+la classe Termination qui indique la manière dont la répétition doit s’arrêter.
+
+Nous pouvons y retrouver plusieurs avantages :
+
+Cette architecture apporte une bonne flexibilité. Il est possible d’ajouter ou de retirer une règle de récurrence sans modifier la structure directe d’Event. Ainsi, un événement ponctuel peut devenir récurrent simplement en lui associant un objet Repetition.
+Cette séparation rend également le système bien plus solide : les classes ont chacune une responsabilité définie, ce qui facilite les évolutions à l'avenir.
+
+Mais on peut également y retrouver certaines limites
+
+L’inconvénient de cette solution est dans sa complexité : pour créer un événement récurrent avec une date de fin, il faut instancier plusieurs objets et gérer leurs relations. Le processus de création peut donc être plus lourd, surtout dans un code applicatif où l’on souhaite parfois aller à l’essentiel.
+
+2. Approche par Héritage : Spécialisation de Event
+
+
+
+
+La seconde solution repose sur une hiérarchie de classes :
+
+Event pour les événements simples,
+RepetitiveEvent pour les événements récurrents,
+FixedTerminationEvent pour ceux ayant une date de fin.
+
+Avantages
+
+Cette approche est plus simple et intuitive du point de vue de l’utilisateur : toutes les informations utiles (durée, fréquence, date de fin) sont regroupées dans un seul objet. Le polymorphisme permet également de manipuler différents types d’événements de façon plus uniforme.
+
+Limites
+
+La contrepartie de cette simplicité est une rigidité plus importante. La hiérarchie peut rapidement devenir difficile à maintenir si de nouveaux types d’événements récurrents doivent être introduits.
+De plus, changer le type d’un événement (par exemple, rendre récurrent un événement initialement ponctuel) nécessite souvent de supprimer l’ancien objet pour en recréer un nouveau, ce qui complique le traitement.
+
+Conclusion
+
+L’approche par composition est la solution la plus adaptée pour un système amené à évoluer, notamment si l’on prévoit d’ajouter différents types de récurrences ou de conditions d’arrêt. Elle respecte mieux les principes de conception orientée objet en garantissant une structure plus souple et surtout modulaire.
+L’approche par héritage, quant à elle, reste parfaitement pertinente pour des projets plus simples, où les règles de récurrence sont limitées et définies en amont. Elle permet une implémentation plus directe, mais au prix d’une évolutivité réduite.
